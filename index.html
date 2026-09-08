@@ -31,7 +31,7 @@
       width: 100%;
       height: 300px;
       position: relative;
-      background-color: #f0f0f0;
+      background-color: #e3e3e3;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -46,29 +46,53 @@
     .banner-overlay-text {
       position: relative;
       z-index: 2;
-      background-color: rgba(255, 0, 0, 0.85); /* Matches your red layout drawing */
+      background-color: rgb(255, 30, 30); /* Matches your red layout drawing */
       color: #000000;
       padding: 15px 30px;
       font-size: 32px;
       font-weight: bold;
-      border-radius: 50px;
+      border-radius: 25px;
       text-align: center;
-      border: 2px solid #000;
+      border: 3px solid #000;
     }
 
     /* Content Area Layout Sections */
-    .content-wrapper { max-width: 960px; margin: 40px auto; padding: 0 20px; }
+    .content-wrapper { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
     
     /* Horizontal Split Content Blocks (Text + Image Columns) */
-    .grid-row { display: flex; gap: 40px; margin-bottom: 50px; align-items: center; }
-    .column-left { flex: 1; display: flex; justify-content: center; }
-    .column-right { flex: 1; }
+    .grid-row { display: flex; gap: 40px; margin-bottom: 60px; align-items: center; }
+    .column-left { flex: 1; display: flex; justify-content: center; position: relative; }
+    .column-right { flex: 1.3; }
     
-    .column-left img { max-width: 100%; max-height: 250px; object-fit: contain; }
+    /* Interactive Preview Cards */
+    .clickable-preview { cursor: pointer; position: relative; width: 100%; display: flex; justify-content: center; }
+    .clickable-preview img { max-width: 100%; max-height: 250px; object-fit: contain; border-radius: 6px; transition: transform 0.2s, filter 0.2s; }
+    .clickable-preview:hover img { transform: scale(1.02); filter: brightness(0.8); }
     
+    /* Dynamic Play Overlay Indicator */
+    .play-hover-icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 60px; height: 60px; background: rgba(0,0,0,0.8); border: 2px solid #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s; pointer-events: none; }
+    .clickable-preview:hover .play-hover-icon { opacity: 1; }
+    .play-hover-icon svg { width: 30px; height: 30px; margin-left: 4px; }
+
     .column-right h1 { font-size: 36px; font-weight: normal; color: #1c64b4; margin-bottom: 15px; }
-    .column-right h2 { font-size: 28px; font-weight: normal; color: #555555; margin-bottom: 15px; }
+    .column-right h2 { font-size: 28px; font-weight: normal; color: #333333; margin-bottom: 15px; }
     .column-right p { font-size: 15px; line-height: 1.6; color: #444444; }
+
+    /* GLOBAL THEATER BREAKOUT MODAL OVERLAY PLAYER */
+    .video-overlay-theater {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background-color: rgba(0, 0, 0, 0.95);
+      z-index: 2000;
+      display: none; /* Hidden by default until activated */
+      justify-content: center;
+      align-items: center;
+    }
+    .theater-container { width: 90vw; max-width: 1000px; aspect-ratio: 16 / 9; background: #000; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
+    .theater-container video { width: 100%; height: 100%; object-fit: contain; }
+    .close-theater-btn { position: absolute; top: -45px; right: 0; background: none; border: none; color: #fff; font-size: 32px; cursor: pointer; font-weight: bold; }
+    .close-theater-btn:hover { color: rgb(255, 30, 30); }
   </style>
 </head>
 <body>
@@ -76,8 +100,7 @@
   <!-- Navigation Bar Layer -->
   <header>
     <div class="logo-area">
-      <!-- Placeholder logo image (We can replace with your red logo file later) -->
-      <img src="https://placeholder.com" class="logo-img" alt="Logo">
+      <img src="logo.png" class="logo-img" onerror="this.src='https://placeholder.com'" alt="Logo">
       <span>PluckerSoap Studios</span>
     </div>
     <nav>
@@ -88,8 +111,7 @@
 
   <!-- Big Banner Section Layer -->
   <div class="hero-banner">
-    <!-- Placeholder banner background image (We can drop your Roblox scene here later) -->
-    <img src="https://placeholder.com" alt="Banner Background">
+    <img src="banner.png" onerror="this.src='https://placeholder.com'" alt="Banner Background">
     <div class="banner-overlay-text">PluckerToonion<br>Studios</div>
   </div>
 
@@ -99,8 +121,7 @@
     <!-- FIRST ROW BLOCK: THE CATALOG -->
     <div class="grid-row">
       <div class="column-left">
-        <!-- Placeholder for your custom Mustache face character drawing -->
-        <img src="https://placeholder.com" alt="Character Drawing">
+        <img src="mustache.png" onerror="this.src='https://placeholder.com'" alt="Character Drawing">
       </div>
       <div class="column-right">
         <h1>The Catalog</h1>
@@ -108,19 +129,56 @@
       </div>
     </div>
 
-    <!-- SECOND ROW BLOCK: SUPERDEGENERATES -->
+    <!-- SECOND ROW BLOCK: INTERACTIVE VOD PREVIEW CELL -->
     <div class="grid-row">
       <div class="column-left">
-        <!-- Placeholder for your second show graphic scene image -->
-        <img src="https://placeholder.com" alt="Show Scene">
+        <!-- Clicking this card triggers the global theater using your Archive stream file links -->
+        <div class="clickable-preview" onclick="launchGlobalVOD('YOUR_ARCHIVE_DOT_ORG_MP4_URL_HERE', 'mustache.png')">
+          <img src="scene.png" onerror="this.src='https://placeholder.com'" alt="Show Scene">
+          <div class="play-hover-icon">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="#fff"/></svg>
+          </div>
+        </div>
       </div>
       <div class="column-right">
         <h2>Superdegenerates</h2>
-        <p>Explore the wacky world of Humphrey MacGovan and Earnest Humphreybottom and their friends: Nigel Squiggmore, Fantasticleese, Charles Leaplee, Joe Letimier, Howard Bunkestrey and Bert Celentigular!</p>
+        <p>Explore the wacky world of Humphrey MacGovan and Earnest Humphreybottom and their friends: Nigel Squiggmore, Fantasticleese, Charles Leaplee, Joe Lotimlor, Howard Bunkcestrey and Bort Cellentigular!</p>
       </div>
     </div>
 
   </div>
+
+  <!-- THE GLOBAL THEATER FRAME (Stays hidden until triggered) -->
+  <div class="video-overlay-theater" id="globalTheater">
+    <div class="theater-container">
+      <button class="close-theater-btn" onclick="shutdownGlobalVOD()">✕ Close</button>
+      <video id="theaterVideoEngine" controls></video>
+    </div>
+  </div>
+
+  <!-- Global Video Event Controller Logic -->
+  <script>
+    const theater = document.getElementById('globalTheater');
+    const player = document.getElementById('theaterVideoEngine');
+
+    function launchGlobalVOD(streamUrl, fallbackPoster) {
+      player.src = streamUrl;
+      player.poster = fallbackPoster;
+      theater.style.display = 'flex';
+      player.play();
+    }
+
+    function shutdownGlobalVOD() {
+      player.pause();
+      player.src = ""; // Flushes data buffer stream links completely
+      theater.style.display = 'none';
+    }
+
+    // Safely exit movie overlay viewing mode if user strikes Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') { shutdownGlobalVOD(); }
+    });
+  </script>
 
 </body>
 </html>
