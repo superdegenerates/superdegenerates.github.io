@@ -3,74 +3,122 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Superdegenerates VOD Catalog</title>
+  <title>PluckerSoap Studios</title>
   <style>
+    /* Reset and Core Layout matching Google Sites */
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: sans-serif; background-color: #0c0c0c; color: #ffffff; }
+    body { font-family: sans-serif; background-color: #ffffff; color: #333333; }
 
-    /* Clean Navigation Bar - Zero Branding */
+    /* Top Navigation Header Bar */
     header {
-      background-color: #141414;
-      border-bottom: 1px solid #222;
+      background-color: #1a1a1a;
+      color: #ffffff;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 18px 40px;
+      padding: 15px 40px;
       position: sticky;
       top: 0;
       z-index: 1000;
     }
-    .site-title { font-size: 22px; font-weight: bold; color: #007bff; letter-spacing: 0.5px; }
-    nav a { color: #aaaaaa; text-decoration: none; margin-left: 25px; font-size: 15px; font-weight: 500; transition: color 0.2s; }
-    nav a:hover, nav a.active { color: #ffffff; }
+    .logo-area { display: flex; align-items: center; gap: 15px; font-size: 18px; font-weight: 500; }
+    .logo-img { width: 30px; height: 30px; object-fit: contain; }
+    nav a { color: #ffffff; text-decoration: none; margin-left: 20px; font-size: 14px; opacity: 0.8; }
+    nav a:hover, nav a.active { opacity: 1; border-bottom: 2px solid #ffffff; padding-bottom: 4px; }
 
-    /* Layout Elements Matching Your Design */
-    .main-container { max-width: 1100px; margin: 50px auto; padding: 0 20px; }
-    .section-title { font-size: 32px; color: #ffffff; margin-bottom: 8px; font-weight: 600; }
-    .section-desc { font-size: 15px; color: #888888; margin-bottom: 40px; }
+    /* Main Big Hero Banner Layout */
+    .hero-banner {
+      width: 100%;
+      height: 300px;
+      position: relative;
+      background-color: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+    .hero-banner img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .banner-overlay-text {
+      position: relative;
+      z-index: 2;
+      background-color: rgba(255, 0, 0, 0.85); /* Matches your red layout drawing */
+      color: #000000;
+      padding: 15px 30px;
+      font-size: 32px;
+      font-weight: bold;
+      border-radius: 50px;
+      text-align: center;
+      border: 2px solid #000;
+    }
 
-    /* Single Page Multi-VOD Grid Alignment Row */
-    .show-row { display: flex; gap: 40px; margin-bottom: 60px; align-items: flex-start; background: #141414; padding: 25px; border-radius: 8px; border: 1px solid #222; }
-    .show-visual { flex: 1.2; max-width: 550px; }
-    .show-text-content { flex: 1; }
-    .show-text-content h2 { font-size: 26px; color: #007bff; margin-bottom: 15px; font-weight: 600; }
-    .show-text-content p { font-size: 15px; line-height: 1.6; color: #cccccc; }
-
-    /* Video Player Frame Styling */
-    .video-frame-container { width: 100%; aspect-ratio: 16 / 9; background-color: #000000; border-radius: 6px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.5); }
-    video { width: 100%; height: 100%; object-fit: contain; }
+    /* Content Area Layout Sections */
+    .content-wrapper { max-width: 960px; margin: 40px auto; padding: 0 20px; }
+    
+    /* Horizontal Split Content Blocks (Text + Image Columns) */
+    .grid-row { display: flex; gap: 40px; margin-bottom: 50px; align-items: center; }
+    .column-left { flex: 1; display: flex; justify-content: center; }
+    .column-right { flex: 1; }
+    
+    .column-left img { max-width: 100%; max-height: 250px; object-fit: contain; }
+    
+    .column-right h1 { font-size: 36px; font-weight: normal; color: #1c64b4; margin-bottom: 15px; }
+    .column-right h2 { font-size: 28px; font-weight: normal; color: #555555; margin-bottom: 15px; }
+    .column-right p { font-size: 15px; line-height: 1.6; color: #444444; }
   </style>
 </head>
 <body>
 
+  <!-- Navigation Bar Layer -->
   <header>
-    <div class="site-title">PluckerSoap Studios</div>
+    <div class="logo-area">
+      <!-- Placeholder logo image (We can replace with your red logo file later) -->
+      <img src="https://placeholder.com" class="logo-img" alt="Logo">
+      <span>PluckerSoap Studios</span>
+    </div>
     <nav>
-      <a href="#" class="active">Catalog</a>
+      <a href="#" class="active">Home</a>
+      <a href="#">Catalog</a>
     </nav>
   </header>
 
-  <div class="main-container">
-    <h2 class="section-title">The Catalog</h2>
-    <p class="section-desc">All our shows, hosted independently.</p>
+  <!-- Big Banner Section Layer -->
+  <div class="hero-banner">
+    <!-- Placeholder banner background image (We can drop your Roblox scene here later) -->
+    <img src="https://placeholder.com" alt="Banner Background">
+    <div class="banner-overlay-text">PluckerToonion<br>Studios</div>
+  </div>
 
-    <!-- VOD SECTION START: SUPERDEGENERATES -->
-    <div class="show-row">
-      <div class="show-visual">
-        <div class="video-frame-container">
-          <!-- REPLACE THE SRC LINK BELOW WITH YOUR DIRECT INTERNET ARCHIVE MP4 URL -->
-          <video id="mainVideoPlayer" controls poster="https://placeholder.com">
-            <source src="YOUR_DIRECT_ARCHIVE_MP4_LINK_HERE" type="video/mp4">
-            Your browser does not support HTML5 video.
-          </video>
-        </div>
+  <!-- Main Website Body Layer -->
+  <div class="content-wrapper">
+
+    <!-- FIRST ROW BLOCK: THE CATALOG -->
+    <div class="grid-row">
+      <div class="column-left">
+        <!-- Placeholder for your custom Mustache face character drawing -->
+        <img src="https://placeholder.com" alt="Character Drawing">
       </div>
-      <div class="show-text-content">
+      <div class="column-right">
+        <h1>The Catalog</h1>
+        <p>All our shows</p>
+      </div>
+    </div>
+
+    <!-- SECOND ROW BLOCK: SUPERDEGENERATES -->
+    <div class="grid-row">
+      <div class="column-left">
+        <!-- Placeholder for your second show graphic scene image -->
+        <img src="https://placeholder.com" alt="Show Scene">
+      </div>
+      <div class="column-right">
         <h2>Superdegenerates</h2>
         <p>Explore the wacky world of Humphrey MacGovan and Earnest Humphreybottom and their friends: Nigel Squiggmore, Fantasticleese, Charles Leaplee, Joe Lotimlor, Howard Bunkcestrey and Bort Cellentigular!</p>
       </div>
     </div>
-    <!-- VOD SECTION END -->
 
   </div>
 
